@@ -28,6 +28,44 @@ app = Flask(__name__)
 def index():
     return render_template("upload.html")
 
+@app.route('/upload_deb', methods=["POST"])
+def upload_deb():
+    codename = ""
+
+    if "branch" not in request.form or request.form["branch"] == "":
+        return "branch missing", 400
+
+    if "deb" not in request.form or request.form["deb"] == "":
+        return "deb missing", 400
+
+    if "codename" in request.form and request.form["codename"] != "":
+        codename = request.form["codename"]
+
+    repodir = os.path.join(
+        config["Repository-Parent"],
+        request.form["branch"]
+    )
+
+    if not os.path.isdir(repodir):
+        os.makedirs(repodir)
+
+    tmp_dirpath = tempfile.mkdtemp(".tmp", "aptirepo-upload-")
+
+    deb_package_path = os.path.join(
+        tmp_dirpath,
+        request.files["deb"].filename
+    )
+
+    request.files["deb"].save(deb_package_path)
+
+    repo = aptirepo.Aptirepo(repodir, confdir)
+    repo.import_deb(deb_package_path, codename)
+    repo.update_dists()
+    repo.sign_releases()
+
+    shutil.rmtree(tmp_dirpath)
+
+
 @app.route('/', methods=["POST"])
 def upload():
 
@@ -59,7 +97,6 @@ def upload():
         file.save(
             os.path.join(tmp_dirpath, file.filename)
         )
-
 
     repo = aptirepo.Aptirepo(repodir, confdir)
     repo.import_changes(changes_filepath)

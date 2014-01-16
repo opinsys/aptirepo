@@ -58,5 +58,36 @@
         http://aptirepo:8080
       </pre>
 
+      <h1>Or a debian package</h1>
+
+      <form action="/upload_deb" method="post" enctype="multipart/form-data" accept-charset="utf-8">
+        <fieldset>
+            <legend>
+            repo branch
+            </legend>
+            <input type="text" name="branch">
+        </fieldset>
+
+        <fieldset>
+            <legend>
+            .deb
+            </legend>
+            <input type="file" name="deb" accept=".deb">
+        </fieldset>
+
+        <fieldset>
+            <legend>
+                codename
+            </legend>
+            <input type="text" name="codename">
+        </fieldset>
+
+        <div style="clear: both"></div>
+
+        <p>
+            <input type="submit">
+        </p>
+      </form>
+
     </body>
 </html>
