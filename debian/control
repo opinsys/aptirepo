@@ -2,7 +2,7 @@ Source: aptirepo
 Section: utils
 Priority: extra
 Maintainer: Opinsys Developers <dev@opinsys.fi>
-Build-Depends: debhelper (>= 8.0.0), python-all-dev
+Build-Depends: debhelper (>= 8.0.0), python-all-dev, dh-systemd
 Standards-Version: 3.9.3
 Homepage: http://github.com/opinsys/aptirepo/
 
@@ -21,6 +21,13 @@ Replaces: debbox
 Recommends: nginx
 Description: Http interface for aptirepo
  Http interface for aptirepo
+ .
+
+Package: aptirepo-updatedistsd
+Architecture: all
+Depends: ${misc:Depends}, python, apt-utils, python-debian, gnupg, aptirepo, aptirepo-http
+Description: simple APT repository tool (updatedistsd)
+ simple APT repository tool (updatedistsd)
  .
 
 Package: aptirepo-upload

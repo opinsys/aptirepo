@@ -25,15 +25,13 @@ import subprocess
 version = re.search('Version: (.*)', subprocess.check_output(
         ['dpkg-parsechangelog', '-l../debian/changelog'])).group(1)
 
-setup(name='aptirepo',
+setup(name='aptirepo-updatedistsd',
       version=version,
-      description='Simple APT Repository Tool.',
+      description='Simple APT Repository Tool (updatedistsd).',
       author='Tuomas Räsänen',
       author_email='tuomasjjrasanen@tjjr.fi',
       url='http://github.com/opinsys/aptirepo',
-      scripts=['aptirepo'],
-      package_dir={'aptirepo': 'lib'},
-      packages=['aptirepo'],
+      scripts=['aptirepo-updatedistsd'],
       license='GPLv2+',
       platforms=['Linux'],
       classifiers=[
@@ -50,5 +48,4 @@ setup(name='aptirepo',
         "Programming Language :: Python :: 3.2",
         ],
       requires=['debian'],
-      provides=['aptirepo'],
       )

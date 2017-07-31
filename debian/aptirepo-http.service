@@ -1,0 +1,11 @@
+[Unit]
+Description=aptirepo-http
+
+[Service]
+ExecStart=/usr/bin/gunicorn --bind 0.0.0.0:8080 --timeout 300 --workers 4 --error-logfile - --access-logfile - server:app
+Group=aptirepo-http
+User=aptirepo-http
+WorkingDirectory=/usr/lib/aptirepo-http
+
+[Install]
+WantedBy=multi-user.target

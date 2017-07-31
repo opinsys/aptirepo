@@ -1,3 +1,9 @@
+aptirepo (0.7.3-0) xenial; urgency=medium
+
+  * Convert upstart-configurations to systemd service files.
+
+ -- Juha Erkkilä <Juha.Erkkila@opinsys.fi>  Mon, 31 Jul 2017 07:26:32 +0000
+
 aptirepo (0.7.2) trusty; urgency=medium
 
   * New release

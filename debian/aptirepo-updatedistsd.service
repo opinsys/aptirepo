@@ -1,0 +1,12 @@
+[Unit]
+Description=aptirepo-updatedistsd
+Wants=aptirepo-http.service
+
+[Service]
+Environment='HOME=/home/aptirepo-http'
+ExecStart=/usr/bin/aptirepo-updatedistsd --aptirepo-confdir /etc/aptirepo
+Group=aptirepo-http
+User=aptirepo-http
+
+[Install]
+WantedBy=multi-user.target

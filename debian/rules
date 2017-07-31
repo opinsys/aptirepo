@@ -10,9 +10,10 @@
 #export DH_VERBOSE=1
 
 %:
-	dh $@
+	dh $@ --with systemd
 
 override_dh_auto_install:
 	$(MAKE) -C aptirepo install DESTDIR=$(CURDIR)/debian/aptirepo
 	$(MAKE) -C http install prefix=/usr sysconfdir=/etc DESTDIR=$(CURDIR)/debian/aptirepo-http
+	$(MAKE) -C updatedistsd install prefix=/usr sysconfdir=/etc DESTDIR=$(CURDIR)/debian/aptirepo-updatedistsd
 	$(MAKE) -C upload install prefix=/usr DESTDIR=$(CURDIR)/debian/aptirepo-upload

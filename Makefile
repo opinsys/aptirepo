@@ -1,4 +1,4 @@
-subdirs = aptirepo http upload
+subdirs = aptirepo http updatedistsd upload
 install-subdirs = $(subdirs:%=install-%)
 clean-subdirs = $(subdirs:%=clean-%)
 test-subdirs =  test-aptirepo
